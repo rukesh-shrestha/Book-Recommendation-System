@@ -19,8 +19,18 @@ Concern branch contain two folder:
   
  In <strong>myrecommendationsystem</strong> folder there is the requirements.txt file which include all the required library name to run the web application. To run this part you can go ahead with virtual or any other environment. In the setting.py folder you have to update the Email configuration to send the email from the contact us page. Similarly, In <strong>src</strong> folder there is also requirements.txt file which include all the required library name to run the API part. To run the file, you have to choose the anaconda environment. 
  
- Below you can see the view of the home page: <br><br>
+ Below you can see the view of some pages: <br><br>
  ![home-page](home-page.png)
+ 
+ <br><br>
+ ![about-page](about.png)
+ 
+<br><br>
+ ![collaborative-page](collaborative.png)
+
+<br><br>
+ ![content-page](content.png)
+ 
  
  
   
