@@ -1,0 +1,173 @@
+{%load static%}
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+<style>
+    ul li a:hover{
+        color:#F0643F !important ;
+    }
+
+/* search */
+
+
+
+.searchbox{
+  position: relative;
+}
+
+.searchbox .input{
+  width: 10px;
+  border: 0px;
+  height: 50px;
+  padding: 0px 24px;
+  border-radius: 50px;
+  box-shadow: 0 0 5px 1px #b6bbc0;
+  outline: none;
+  transition: all 0.5s linear;
+}
+
+.searchbtn{
+  position: absolute;
+  top: 0;
+  right: -1px;
+  background: #F0643F;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.5s 0.6s linear;
+}
+
+.searchbtn .fas{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  color: white;
+  font-size: 22px;
+  transition: all 0.5s 0.6s linear;
+}
+
+/* jquery class */
+.searchbtn.bg-green{
+  background: #42be11;
+  transition: all 0.2s linear;
+}
+
+.searchbtn .fas.color-white{
+  color: #fff;
+  transition: all 0.2s linear;
+}
+
+.searchbox .input.active-width{
+  width: 275px;
+}
+
+
+</style>
+</head>
+
+
+
+
+<nav class="navbar navbar-expand-md navbar-light  bg-white sticky-top" style="color: black !important; padding: 0 200 0 200">
+    <a class="navbar-brand" href="{%url 'home'%}"><img src="{%static 'images/logo.png'%}" class="img-fluid img-responsive" style="height: 90px;"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{%url 'home'%}"><span  style="color: #F0643F !important;">Home</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{%url 'about'%}">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{%url 'contact'%}">Contact</a>
+            </li>
+            
+           
+            <li class="nav-item">
+                {% if user.is_authenticated %}
+
+                <a class="nav-link" href="{%url 'logout'%}">Sign out</a>
+                 {%else%}
+                <a class="nav-link" href="{%url 'login'%}">Sign in</a>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{%url 'register'%}">Register</a>
+                </li>
+
+                {% endif %}
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="{%url 'recommend'%}">Recommendation</a>
+
+                
+            </li> -->
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Recommendation
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{%url 'recommend'%}">Collaborative</a>
+                <a class="dropdown-item" href="{%url 'content'%}">Content</a>
+              
+            </li>
+            <br>
+        </ul>
+        <ul class="navbar-nav">
+            {% if request.user.is_active%}
+					<li class="nav-item-left mr-4">
+
+                        <strong style="color:black">Hi. {{user}}</strong>
+                        
+					</li>
+          <br>
+				{% endif %}
+        </ul>
+
+        
+        
+
+
+
+               
+
+<div class="wrapper">
+  <div class="searchbox">
+      <form>
+    <input class="input" name="q" value="{{ request.GET.q }}" placeholder= "Search">
+</form>
+    <div class="searchbtn">
+      <i class="fas fa-search"></i>
+    </div>
+    
+  </div>
+</div>
+        
+    </div>
+</nav>
+
+
+<script>
+    $(".searchbtn").click(function(){
+  $(this).toggleClass("bg-green");
+  $(".fas").toggleClass("color-white");
+  $(".input").focus().toggleClass("active-width").val('');
+});
+</script>
+
+
+</html>   
+

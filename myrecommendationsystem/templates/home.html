@@ -1,0 +1,266 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block body%}
+
+    
+
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' >
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <!-- <link rel="stylesheet" type="text/css" href="{%static 'css/st.css'%}"> -->
+<style>
+    .contain{
+        border:2px solid blue;
+        height:300px;
+        width:320px;
+        margin: 10px;
+        float:right;
+        padding: 5px;
+
+    }
+
+    .row{
+        margin:5px;
+        padding:5px;
+    }
+
+    .img-thumbnail{
+    padding:8px !important;
+    }
+
+
+    @media only screen and (max-width: 600px) {
+    .custom-name{
+        font-size: medium  !important;
+    }
+
+    .custom-author{
+        font-size: small !important;
+    }
+
+    .custom-body{
+        font-size: 12px !important;
+    }
+  }
+
+
+  
+
+
+.custom{
+   
+ margin: 10px auto 20px;
+ display: block;
+
+}
+
+.custom-button{
+margin-left: 90px;
+margin-top: 20px;
+ display: block;
+
+}
+
+
+@media only screen and (max-width: 600px) {
+ .custom-button{
+     margin: 30px auto 20px;
+ display: block;
+
+}
+}
+
+
+
+
+</style>
+
+
+<section class="m-0 p-0">
+
+    <br>
+ <div class="container">
+     {%if context%}
+    <div>
+        <div>
+
+    {% for place in context %}
+
+    <div class="row img-thumbnail">
+        <div class="col col-md-4 col-sm-2 col-md-push rounded">
+            <img src="{{place.image.url}}" class="img-thumbnail img-responsive img-fluid">
+
+        </div>
+        <div class="col col-md-7 col-sm-2 m-auto my-4 col-md-push">
+            <div class="h2 custom-name">
+                {{place.name}}
+
+            </div>
+            <div class="h5 custom-author">
+                by:- {{place.author}}
+
+            </div>
+            <div class="text-muted text-justify custom-body">
+                <p>
+                    {{place.descriptions|slice:":100"}} ... <a href="{%url 'detailhome' place.id%}" style="text-decoration: none; color:#F0643F;">More Details</a>
+
+
+                </p>
+
+            </div>
+
+            <div class="text-muted text-justify custom-body">
+                <p>
+                    {{place.genre}}
+                </p>
+
+            </div>
+          
+            <div class="caption my-2">
+                    
+
+                <!-- View Details -->
+                 <div class="mid"> <a href="{% url 'rating' place.id %}"  class="btn  btn-sm custom-body" style="background-color: #F0643F; color: white;" role="button">Give Rating</a></div>
+
+
+            </div>
+        </div>
+        
+        
+
+
+    
+    
+           
+        <!-- <div class="col-md-4">
+           
+
+        </div> -->
+               
+            </div>
+            <br>
+           
+          
+
+        {% endfor %}
+    </div>
+  
+</div>
+
+{%if not query%}
+
+<div>
+
+    
+    <h4 class="text-center" style="font-weight: bolder; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Popular Items</h4>
+        <div class="row">
+           
+           
+           {% for place in book %}
+       
+               <div class="col-sm-3 col-md-3 m-4">
+                   <div class="bg-light" style="border-radius: 50% !important; width: 320px !important; height: 320px !important;">
+                     
+                           
+                           <img src="{{place.image.url}} " class="img-responsive img-fluid rounded custom" style="width: 200px; height: 250px;">
+                           <p class="text-center">{{place.name}}</p>
+       
+                           
+       
+                     
+                   </div>
+                   <a href="{% url 'detailhome' place.id %}" class="text-center custom-button" style="text-decoration: none; color:#F0643F;">Learn More &#x22B3;</a>
+       
+                  
+               </div>
+       
+               {% endfor %}
+       
+               <div class="container">
+       
+              
+               <h4 class="text-center" style="font-weight: bolder; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">{{name}}</h4>
+           </div>
+       </div>
+    
+    
+    
+    
+    
+    
+       <h4 class="text-center" style="font-weight: bolder; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Recently views</h4>
+        <div class="row">
+           
+           
+           {% for place in recent %}
+       
+               <div class="col-sm-3 col-md-3 m-4">
+                   <div class="bg-light" style="border-radius: 50% !important; width: 320px !important; height: 320px !important;">
+                     
+                           
+                           <img src="{{place.image.url}} " class="img-responsive img-fluid rounded custom" style="width: 200px; height: 250px;">
+                           <p class="text-center">{{place.name}}</p>
+       
+                           
+       
+                     
+                   </div>
+                   <a href="{% url 'detailhome' place.id %}" class="text-center custom-button" style="text-decoration: none; color:#F0643F;">Learn More &#x22B3;</a>
+       
+                  
+               </div>
+       
+               {% endfor %}
+       
+               <div class="container">
+       
+              
+               <h4 class="text-center" style="font-weight: bolder; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">{{name}}</h4>
+           </div>
+       </div>
+    
+            
+    
+    </div>
+
+</div>
+<div class="container text-center my-3">
+
+    <div class="pagination d-flex justify-content-center">
+      <span class="step-links" >
+          {% if context.has_previous %}
+              <a href="?page=1" style="text-decoration: none;" class="px-2">First</a>
+              <a href="?page={{ context.previous_page_number }}" style="text-decoration: none;" class="px-1"> &laquo;</a>
+          {% endif %}
+  
+          <span class="current" >
+              Page {{ context.number }} of {{ context.paginator.num_pages }}
+          </span>
+  
+          {% if context.has_next %}
+              <a href="?page={{ context.next_page_number }}" style="text-decoration: none;" class="px-1">&raquo;</a>
+              <a href="?page={{ context.paginator.num_pages }}" style="text-decoration: none;" class="px-2">Last</a>
+          {% endif %}
+      </span>
+  </div>
+
+  {%endif%}
+  {%else%}
+  <div class="container">
+    <div class="text-center h4 p-3 mb-5 bg-white rounded" style="color: rebeccapurple;">
+        <h3>Opps!!!</h3>
+        There is no search content.
+
+    </div>
+
+</div>
+  {%endif%}
+  </div>
+
+</section>
+
+
+
+
+
+{%endblock body%}

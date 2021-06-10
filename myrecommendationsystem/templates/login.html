@@ -1,0 +1,202 @@
+{%extends 'base.html'%}
+{% load static %}
+
+
+{%block body%}
+<style>
+	.custom-box-left{
+	  
+	  width: 600px;
+	  align-items: right;
+	  padding-right: 10px;
+	}
+  
+  
+	.custom-box-right{
+	  /* border-left: 2px solid #DEDEDE; */
+	  width: 600px;
+	  
+	 padding-left: 130px !important;
+	  margin-right: 100px !important;
+	}
+  
+  
+	.custom-image{
+	  width: 200px !important;
+	  height: 250px !important;
+	  float: left !important;
+	}
+	.custom-image-about{
+		width: 300px !important;
+		height: 300px !important;
+		float: center !important;
+		left:50% !important;
+		text-align: center !important;
+		padding:20px;
+		margin-left: 150px;
+		
+	}
+	
+	.cover-image{
+   
+   background-image: url("{%static 'images/loginin.png'%}") !important; 
+   
+   background-repeat: no-repeat !important;  
+   background-attachment: local !important; 
+   background-size: 450px !important; 
+   background-color: #F3F3F3 !important;
+   background-position: center !important;
+   width: 100% !important;
+  
+ 
+   
+ }
+ .custom-div-center{
+    margin-left: 200px;
+    margin-right: 200px;
+  }
+  
+	@media only screen and (max-width: 600px) {
+	  .custom-image-about{
+		
+		margin: 0px !important;
+	  
+		
+	}
+  
+	.descriptions{
+	  width:100% !important;
+	}
+
+	.custom-img-div{
+		width: auto !important;
+		height: auto !important;
+	}
+
+	.custom-box-right{
+	  /* border-left: 2px solid #DEDEDE; */
+	  width: auto !important;
+	  
+	 padding-left: 0 !important;
+	margin-right: 0 !important;
+	margin-left: 0 !important;
+	}
+
+	.register-text{
+		font-size: larger !important;
+		color: black !important;
+	}
+
+	.custom-div-center{
+    margin: 0;
+  }
+  
+  
+	
+	}
+	
+  </style>
+
+
+<div class="custom-div-center my-5">
+
+
+
+  
+  <div class="row mx-5 mb-4">
+	<div class="custom-box-left text-justify">
+	  <div class="text-center">
+		<h2>
+		 <strong> Sign in to <br> BookStore</strong>
+		</h2>
+  
+	  </div>
+	 <p>
+		Hello Users!!! <br> Please Login to the system to get access to give rating and get the recommended items.
+	 </p>
+  
+	  <div class="custom-image-about justify-content-center">
+		<div class="loginbox">
+			<!-- <img src="{%static 'images/login.png'%}"class="login"> -->
+				<div class="form-group">
+				<form method="post">
+					{% csrf_token %}
+				
+					<input type ="text" class="form-control m-2 bg-light" name="username" placeholder="Username" >
+			
+					<input type="password" class="form-control m-2 bg-light" name="password" placeholder="Password">
+					<input type="submit"  class="btn btn-block m-2" style="background-color: #F0643F; color: white;" value= "Login"><br>
+	
+				
+				</form>
+
+				
+   
+    <div class="container my-5">
+
+    
+ 
+  </div>
+ 
+
+
+   
+			</div>
+		</div>
+		
+		
+	
+	  </div>
+	  {%if messages%}
+	  <div class="alert alert-danger fade show">
+		{%for message in messages%}
+		{{message}}
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	
+		  <span aria-hidden="true">&times;</span>
+	   
+		</button>
+		{%endfor%}
+	  </div>
+	  {%endif%}
+	</div>
+  
+  
+  
+	
+   
+  <div class="custom-box-right text-justify ml-5">
+	<div  class="custom-img-div" style="width: 600px; height: 550px;">
+	  <div class="px-5 justify-content-right cover-image img-fluid img-thumbnail" style="align-items: right;">
+		
+
+		<div>
+			<div class="d-flex justify-content-center align-items-center h-100">
+			  <div class="text-light" style="margin-top: 95%;">
+				
+				<h4 class="text-center register-text" style="color: #616161;">Not Register Yet?</h4>
+				<div class="text-center">
+
+				
+						 <a href="{% url 'register' %}"><button type="submit" class="btn btn" style="font-size: small; width: 150px; background-color: #F0643F; color: white;">Register Now &#x22B3;</button></a>
+						</div>
+				   
+				
+			  
+			</div>
+		  </div>
+		  </div>
+		
+		
+	  </div>
+	 </div>
+	</div>
+
+
+  </div>
+
+</div>
+
+{%endblock body%}
+
+

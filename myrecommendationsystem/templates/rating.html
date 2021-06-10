@@ -1,0 +1,240 @@
+{%extends 'base.html'%}
+{%load static%}
+
+
+{%block body%}
+
+<!--    <link rel="stylesheet" type="text/css" href="{%static 'css/bootstrap.min.css'%}">-->
+
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' >
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+<style>
+    .contain{
+        border:2px solid blue;
+        height:300px;
+        width:320px;
+        margin: 10px;
+        float:right
+        padding: 5px;
+
+    }
+
+    .row{
+        margin:5px;
+        padding:5px;
+    }
+
+    .img-thumbnail{
+    padding:8px !important;
+    }
+
+    .outerdiv{
+        position:relative;
+        margin:10px;
+    }
+
+
+
+    @media only screen and (max-width: 600px) {
+    .custom-name{
+        font-size: medium  !important;
+    }
+
+    .custom-author{
+        font-size: small !important;
+    }
+
+    .custom-body{
+        font-size: 12px !important;
+    }
+
+    .custom-search{
+        justify-content: center !important;
+        align-items: center !important;
+    }
+  }
+
+
+</style>
+
+
+<section class="container my-5">
+<div class="container">
+   
+
+
+
+    <div class="container">
+        <div>
+            <div>
+    
+     
+    
+        <div class="row img-thumbnail">
+            <div class="col col-md-4 col-sm-2 col-md-push rounded">
+                <img src="{{place.image.url}}" class="img-thumbnail img-responsive img-fluid">
+    
+            </div>
+            <div class="col col-md-7 col-sm-2 m-auto my-4 col-md-push">
+                <div class="h2 custom-name">
+                    {{place.name}}
+    
+                </div>
+                <div class="h5 custom-author">
+                    by:- {{place.author}}
+    
+                </div>
+                <div class="text-muted text-justify custom-body">
+                    <p>
+                        {{place.descriptions|slice:":100"}} ... <a href="{% url 'detailhome' place.id %}" style="text-decoration: none; color:#F0643F;">More Details</a>
+    
+    
+                    </p>
+    
+                </div>
+    
+                <div class="text-muted text-justify custom-body">
+                    <p>
+                        {{place.genre}}
+                    </p>
+    
+                </div>
+
+
+                <div>
+                    <form class="form-horizontal" role="search" method="post" action="{% url 'rating' place.id %}" onsubmit="return validateForm()"  name="ratingForm">
+                        {% csrf_token %}
+                    <div class="form-group custom-search">
+                    <div class="input-group">
+                     <div class="row" style="margin: 0 !important;">
+                    <div class="col-lg-12">
+                          <div class="star-rating">
+                            <span class="fa fa-star-o" data-rating="1"></span>
+                            <span class="fa fa-star-o" data-rating="2"></span>
+                            <span class="fa fa-star-o" data-rating="3"></span>
+                            <span class="fa fa-star-o" data-rating="4"></span>
+                            <span class="fa fa-star-o" data-rating="5"></span>
+    
+    
+    
+    
+                       <input type="hidden" name="rating" class="rating-value" value="0" >
+                     
+                        <input type="hidden" id="bookid" name="bookid" value="{place.id}">
+                     
+                       
+                        
+    
+                        </div>
+                    </div>
+                    </div><br>
+    
+    
+    
+                 </div>
+                 <input type="submit" class="btn btn" style="background-color: #F0643F; color: white;" value="submit">
+                           
+                   
+                            
+                 </div>
+                </form>
+    
+                </div>
+          
+               
+               
+            </div>
+            
+            
+    
+    
+        
+        
+               
+            <!-- <div class="col-md-4">
+               
+    
+            </div> -->
+                   
+                </div>
+                <br>
+               
+              
+    
+          
+        </div>
+      
+    </div>
+            
+    
+    </div>
+
+
+
+
+
+
+
+
+      
+
+          
+      
+
+        </div>
+    </div>
+
+
+    </div>
+</div>
+
+</div>
+</div>
+    </div>
+    </section>
+<script type="text/javascript" src="{%static 'js/jquery.min.js'%}"></script>
+
+	<script type="text/javascript" src="{%static 'js/bootstrap.min.js'%}"></script>
+    <script type="text/javascript">
+    var $star_rating = $('.star-rating .fa');
+
+    var SetRatingStar = function() {
+        return $star_rating.each(function() {
+        if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
+            return $(this).removeClass('fa-star-o').addClass('fa-star');
+        } else {
+        return $(this).removeClass('fa-star').addClass('fa-star-o');
+        }
+        });
+        };
+
+    $star_rating.on('click', function() {
+    $star_rating.siblings('input.rating-value').val($(this).data('rating'));
+    return SetRatingStar();
+    });
+
+    SetRatingStar();
+    $(document).ready(function() {
+
+    });
+
+</script>
+<script type="text/javascript">
+    function validateForm(){
+    var x = document.forms["ratingForm"]["rating"].value;
+    if(x=="0"){
+        alert("Invalid Input");
+        return false;
+    }
+    }
+</script>
+
+
+
+
+
+
+
+{%endblock body%}
+
+

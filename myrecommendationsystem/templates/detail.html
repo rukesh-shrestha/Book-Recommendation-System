@@ -1,0 +1,143 @@
+{%extends 'base.html'%}
+{%block body%}
+{%load static%}
+
+<style>
+  .custom-box-left{
+    border-left: 2px solid #DEDEDE;
+    align-items: right;
+    width: 200px;
+   
+   
+  }
+
+
+  .custom-box-right{
+    /* border-left: 2px solid #DEDEDE; */
+    width: 800px;
+    align-items: right;
+    padding-left: 10px;
+  }
+
+
+  .custom-image{
+    width: 200px !important;
+    height: 250px !important;
+    float: left !important;
+  }
+  .custom-image-about{
+      width: 300px !important;
+      height: 300px !important;
+      float: center !important;
+      left:50% !important;
+      text-align: center !important;
+      padding:20px;
+      margin-left: 150px;
+      
+  }
+  
+
+  @media only screen and (max-width: 600px) {
+    .custom-image-about{
+      
+      margin: 0px !important;
+    
+      
+  }
+
+  .descriptions{
+    width:100% !important;
+  }
+
+
+  
+  }
+  
+</style>
+
+{%for details in context%}
+<div class="container">
+
+
+<div class="row mx-5">
+
+    <div class="custom-box-right text-justify my-5">
+        <div>
+          <div class="custom-image mx-2 pr-3" style="border-right:2px solid #DEDEDE;" >
+          
+            <img src="{{details.image.url}}" class="custom-image img-thumbnail img-responsive img-fluid rounded">
+        
+          </div>
+          <div class="descriptions  px-3">
+            <h5>Mr.Rukesh Shrestha</h5>
+            <div class="text-muted">
+              <p>Founder</p>
+          
+          {{details.descriptions_person}}
+          
+        </div>
+        
+        <div class="row mt-2">
+          
+      
+          <div class="py-3 ml-auto pr-4">
+            <a href="{{details.facebook}}" target="_blank"><img src="{%static 'images/facebook.png'%}" alt="" srcset="" class="px-1"></a>
+            
+            <!-- <a href="{{details.twitter}}" target="_blank" rel="noopener noreferrer"><img src="{%static 'images/twitter.png'%}" alt="" srcset="" class="px-1"></a> -->
+            <a href="{{details.linkedin}}" target="_blank" rel="noopener noreferrer"><img src="{%static 'images/linkend.png'%}" alt="" srcset="" class="px-1" style="height: 41px;"></a>
+            <a href="{{details.instragram}}" target="_blank" rel="noopener noreferrer"><img src="{%static 'images/Group 101.png'%}" alt="" srcset="" class="px-1"></a>
+            <!-- <a href="mailto:rukesh.shrestha11@gmail.com" target="_blank" rel="noopener noreferrer"><img src="{%static 'images/email.png'%}" alt="" srcset="" class="px-1"></a> -->
+          </div>
+      
+          
+        </div>
+        <div >
+      
+          
+      </div>
+      
+        </div>
+      
+      </div>
+      </div>
+
+
+
+
+<!-- -------- -->
+
+
+  <div class="custom-box-left text-justify">
+    <div class="text-center px-4" style="margin-top: 40px; margin-bottom: 40px;">
+      <h4 class="text-center">
+        Quotes
+      </h4>
+
+      <blockquote>
+        <h5>
+        <em class="text-muted">"{{details.quotes}}"</em>
+        </h5>
+        
+        </blockquote>
+
+        - pope-john-xxiii
+
+    </div>
+   
+
+  
+  </div>
+
+
+
+  
+ 
+
+</div>
+</div>
+{%endfor%}
+
+
+
+
+{%endblock%}

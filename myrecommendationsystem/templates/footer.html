@@ -1,0 +1,83 @@
+
+{%load static%}
+<!-- Footer -->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<link rel="stylesheet" type="text/css" href="{%static 'css/footer.css'%}">.
+
+
+<!-- Footer -->
+<section class="bg-dark">
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center">
+    <!-- Grid container -->
+    <div class="container p-4">
+      <!--Grid row-->
+      <div class="row">
+        <!--Grid column-->
+        <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+          <h5 class="text-uppercase text-left p-2">Book Store</h5>
+
+          <p class="text-justify">
+            Book Store is the Web Application which has the core feature of registering, signup and recommending the book according to the 
+            rating given by the users as well as by searching the content of the book.
+          </p>
+         
+          <div class="text-right py-3">
+            <a href="https://www.facebook.com/rukesh.shrestha.94651/" target="_blank"><img src="{%static 'images/facebook.png'%}" alt="" srcset="" class="px-1"></a>            
+            <a href="https://twitter.com/RukeshShresth14" target="_blank" rel="noopener noreferrer"><img src="{%static 'images/twitter.png'%}" alt="" srcset="" class="px-1"></a>
+            <a href="https://www.linkedin.com/in/rukesh-shrestha-07914b1a3/" target="_blank" rel="noopener noreferrer"><img src="{%static 'images/linkend.png'%}" alt="" srcset="" class="px-1" style="height: 41px;"></a>
+            <a href="https://www.instagram.com/____rukesh____/" target="_blank" rel="noopener noreferrer"><img src="{%static 'images/Group 101.png'%}" alt="" srcset="" class="px-1"></a>
+            <a href="mailto:rukesh.shrestha11@gmail.com" target="_blank" rel="noopener noreferrer"><img src="{%static 'images/email.png'%}" alt="" srcset="" class="px-1"></a>
+          </div>
+         
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0 p-2">
+          <h5 class="text-uppercase">Links</h5>
+
+          <ul class="list-unstyled">
+            <li>
+              <a href="{%url 'contact'%}" class="text-white text-decoration-none">Contact</a>
+            </li>
+            <li>
+              <a href="{%url 'about'%}" class="text-white text-decoration-none">About</a>
+            </li>
+          
+          </ul>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0 p-2">
+          <h5 class="text-uppercase">Recommendation</h5>
+
+          <ul class="list-unstyled">
+            <li>
+              <a href="{%url 'recommend'%}" class="text-white text-decoration-none">Collaboraive</a>
+            </li>
+            <li>
+              <a href="{%url 'content'%}" class="text-white text-decoration-none">Content</a>
+            </li>
+            
+          </ul>
+        </div>
+        <!--Grid column-->
+      </div>
+      <!--Grid row-->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3">
+      © 2021 Copyright:
+      <a class="text-white" href="https://mdbootstrap.com/">Mr.Rukesh Shrestha</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+</section>

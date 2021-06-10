@@ -1,0 +1,266 @@
+{%extends 'base.html'%}
+{% load static %}
+
+
+{%block body%}
+<style>
+	.custom-box-left{
+	  
+	  width: 600px;
+	  align-items: center;
+	  padding-right: 10px;
+	  float: right;
+	}
+  
+  
+	.custom-box-right{
+	  /* border-left: 2px solid #DEDEDE; */
+	  width: 600px;
+	  
+	 padding-left: 130px !important;
+	  margin-right: 100px !important;
+	}
+  
+  
+	.custom-image{
+	  width: 200px !important;
+	  height: 250px !important;
+	  float: left !important;
+	}
+	.custom-image-about{
+		width: 300px !important;
+		height: 300px !important;
+		float: center !important;
+		left:50% !important;
+		text-align: center !important;
+		padding:20px;
+		margin-left: 150px;
+		
+	}
+	
+	.cover-image{
+   
+   background-image: url("{%static 'images/register.png'%}") !important; 
+   
+   background-repeat: no-repeat !important;  
+   background-attachment: local !important; 
+   background-size: 450px !important; 
+   background-color: #F3F3F3 !important;
+   background-position: center !important;
+   width: 100% !important;
+  
+ 
+   
+ }
+
+ .custom-div-center{
+    margin-left: 200px;
+    margin-right: 200px;
+  }
+ 
+  
+	@media only screen and (max-width: 600px) {
+	  .custom-image-about{
+		
+		margin: 0px !important;
+	  
+		
+	}
+  
+	.descriptions{
+	  width:100% !important;
+	}
+
+	.custom-img-div{
+		width: auto !important;
+		height: auto !important;
+	}
+
+	.custom-box-right{
+	  /* border-left: 2px solid #DEDEDE; */
+	  width: auto !important;
+	  
+	 padding-left: 0 !important;
+	margin-right: 0 !important;
+	margin-left: 0 !important;
+	}
+
+	.register-text{
+		font-size: medium !important;
+		color: black !important;
+	}
+
+
+	.custom-div-center{
+    margin: 0;
+  }
+  
+  
+  
+	
+	}
+	
+  </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ============= -->
+
+
+<div class="custom-div-center my-5">
+
+
+  
+  <div class="row mx-5 mb-4">
+	<div class="custom-box-left text-justify">
+	  <div class="text-center">
+		<h2>
+		 <strong> Sign up to <br> BookStore</strong>
+		</h2>
+  
+	  </div>
+
+	  
+	  <div class="custom-image-about justify-content-center">
+		<div class="loginbox">
+			<!-- <img src="{%static 'images/login.png'%}"class="login"> -->
+			<div class="d-flex justify-content-center form_container">
+				<form method="POST" action="">
+					{% csrf_token %}
+				
+					 
+					<div class="input-group mb-3 form-group">
+						
+						{{form.username}}
+						
+					</div>
+					<div class="input-group mb-3">
+						
+						{{form.first_name}}
+						
+						
+					</div>
+					<div class="input-group mb-3">
+						
+					{{form.last_name}}
+						
+						
+					</div>
+					<div class="input-group mb-2">
+						
+						{{form.email}}
+						
+					
+					</div>
+					<div class="input-group mb-2">
+						
+						{{form.password1}}
+						
+					
+					</div>
+					<div class="input-group mb-2">
+						
+						{{form.password2}}		
+						
+					</div>
+
+					   <div class="d-flex justify-content-center mt-3 login_container">
+						 <input class="btn btn" style="background-color: #F0643F; color: white;" type="submit" value="Register Account">
+					   </div>
+				</form>
+				
+
+			</div>
+		</div>
+		
+		
+	
+	  </div>
+	  <div style="margin-top: 120px;">
+
+	  
+	  {%if messages%}
+	  <div class="alert alert-danger fade show">
+		{%for message in messages%}
+		{{message}}
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	
+		  <span aria-hidden="true">&times;</span>
+	   
+		</button>
+		{%endfor%}
+	  </div>
+	  {%endif%}
+	</div>
+	</div>
+  
+  
+  
+	
+   
+  <div class="custom-box-right text-justify ml-5">
+	<div  class="custom-img-div" style="width: 600px; height: 550px;">
+	  <div class="px-5 justify-content-right cover-image img-fluid img-thumbnail" style="align-items: right;">
+		
+
+		<div>
+			<div class="d-flex justify-content-center align-items-center h-100">
+			  <div class="text-light" style="margin-top: 95%;">
+				
+				<h4 class="text-center register-text" style="color: #616161;">Already a Member?</h4>
+				<div class="text-center">
+
+				
+						 <a href="{% url 'login' %}"><button type="submit" class="btn btn" style="font-size: small; width: 150px; background-color: #F0643F; color: white;">Login Now &#x22B3;</button></a>
+						</div>
+				   
+				
+			  
+			</div>
+		  </div>
+		  </div>
+		
+		
+	  </div>
+	 </div>
+	</div>
+
+
+  </div>
+</div>
+
+  <script>
+						
+
+	//Query All input fields
+	var form_fields = document.getElementsByTagName('input')
+	form_fields[2].placeholder='Username';
+	form_fields[3].placeholder='Firstname';
+	form_fields[4].placeholder='Lastname';
+	form_fields[5].placeholder='Email';
+	form_fields[6].placeholder='Password';
+	form_fields[7].placeholder='Re-enter Password';
+
+
+	for (var field in form_fields){
+		form_fields[field].className += ' form-control'
+		form_fields[field].style.backgroundColor += '#F3F3F3'
+	}
+</script>
+
+
+
+  {%endblock body%}
