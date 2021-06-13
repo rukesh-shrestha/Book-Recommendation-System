@@ -126,6 +126,15 @@
   
   <div class="row mx-5 mb-4">
 	<div class="custom-box-left text-justify">
+		{%if mgs%}
+		<div class="text-center h4 my-5 bg-white rounded" style="color: rebeccapurple;">
+			<h3>Opps!!!</h3>
+			{{mgs}}
+	
+		</div>
+
+		{%else%}
+		
 	  <div class="text-center">
 		<h2>
 		 <strong> Sign up to <br> BookStore</strong>
@@ -189,6 +198,7 @@
 		
 	
 	  </div>
+	  {%endif%}
 	  <div style="margin-top: 120px;">
 
 	  

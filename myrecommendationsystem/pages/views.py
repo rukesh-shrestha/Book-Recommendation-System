@@ -105,21 +105,28 @@ def contact(request):
     return render(request,"contactus.html",context)
 
 def register(request):
-    form = UserForm()
-    context = {'form': form}
-    if request.method == 'POST':
-        form = UserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Account Created Successfully.')
-            return redirect('login')
-        else:
-            for msg in form.error_messages:
-                messages.error(request, f"{form.error_messages[msg]}")
+    if request.user.is_authenticated:
+        context = {'mgs':'Someone is login to the system. Please logout and then register the new user.'}
+        return render(request,"register.html",context)
+    
+        
+    else:
+        form = UserForm()
+        context = {'form': form}
+        if request.method == 'POST':
+            form = UserForm(request.POST)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Account Created Successfully.')
+                return redirect('login')
+            else:
+                for msg in form.error_messages:
+                    messages.error(request, f"{form.error_messages[msg]}")
 
-            return render(request,"register.html",context)
-   
-    return render(request,"register.html",context)
+                return render(request,"register.html",context)
+    
+        return render(request,"register.html",context)
+        
 
 def loginuser(request):
     if request.method == 'POST':
