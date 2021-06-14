@@ -9,6 +9,7 @@ import requests
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import sigmoid_kernel
 from configuration import DATABASE_PATH
+import random
 
 app = Flask(__name__)
 connect = sql.connect(DATABASE_PATH)
@@ -16,9 +17,7 @@ connect = sql.connect(DATABASE_PATH)
 database_table = pd.read_sql_query("SELECT name FROM sqlite_master WHERE type='table'",connect)
 data_rating = pd.read_sql_query("SELECT * from pages_myrating",connect)
 books = pd.read_sql_query("SELECT * from pages_book",connect)
-
 pivoted_data=data_rating.pivot_table(index='places_id',columns='user_id',values='rating').fillna(0)
-
 features= csr_matrix(pivoted_data.values)
 
 model = NearestNeighbors(metric='cosine',algorithm='brute')
@@ -28,17 +27,32 @@ model.fit(features)
 def hello_world():
     users = request.form.get("user_id")
     user_id = int(users)
+    
+
     distances,indices = model.kneighbors(pivoted_data.iloc[user_id,:].values.reshape(1,-1),n_neighbors=7)
+   
     recommended_items = set()
+    recommend_dict = dict()
+    newdic = dict()
     for i in range(0,len(distances.flatten())):
         if i == 0:
             print('Recommendations for {0}:\n'.format(pivoted_data.index[user_id]))
         else:
             print('{0}: {1}, with distance of {2}:'.format(i, pivoted_data.index[indices.flatten()[i]],distances.flatten()[i]))
+            recommend_dict.update({i: pivoted_data.index[indices.flatten()[i]]})
+
             recommended_items.add(pivoted_data.index[indices.flatten()[i]])
+    print(recommend_dict.items())
+    for k, v in recommend_dict.items():
+        newdic[str(k)]=str(v)
+
     items = tuple(recommended_items)
-    recommended = '{}'.format(items)
-    return jsonify(recommended)
+    recommended = '{}'.format(recommend_dict)
+    value = jsonify(newdic)
+   
+    return value
+   
+    
 
 
 tfv = TfidfVectorizer(min_df=3,  max_features=None, 
@@ -70,6 +84,7 @@ def recommend(sig=sig):
    
     value = books['name'].iloc[book_indices]
     items = dict(value)
+    print(type(items))
     return jsonify(items)
 
 
